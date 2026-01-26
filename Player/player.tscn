@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2hrx5mwd2wu0"]
+
+[ext_resource type="Script" uid="uid://3in11msrngca" path="res://Player/player.gd" id="1_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://dy3fprbwqs8f6" path="res://Assets/Models/low-poly_simeon_north_model_1826.glb" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://c3a030ws4msfp" path="res://Player/ui/reticle.gd" id="3_btcbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hvfyp"]
+
+[node name="Player" type="CharacterBody3D"]
+process_mode = 1
+script = ExtResource("1_4ntmi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.746349, 0)
+
+[node name="gun_model" parent="Camera3D" instance=ExtResource("1_l8h54")]
+transform = Transform3D(-0.00084213074, 0, 0.24999858, 0, 0.25, 0, -0.24999858, 0, -0.00084213074, 0.33755818, -0.30208135, -0.7207704)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95976496, 0)
+shape = SubResource("CapsuleShape3D_hvfyp")
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Reticle" type="CenterContainer" parent="UserInterface" node_paths=PackedStringArray("characterController", "reticleLines")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_btcbx")
+characterController = NodePath("../..")
+reticleLines = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
+
+[node name="Top" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="UserInterface/Reticle"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0

@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://d05j5ohditf8a"]
+
+[ext_resource type="Texture2D" uid="uid://gso6qdkq6nyk" path="res://Assets/SplashArt/DarkCitty.png" id="1_2s0o5"]
+[ext_resource type="Script" uid="uid://c8gwhvpqivfo4" path="res://Ui/main_menu.gd" id="1_uimj6"]
+[ext_resource type="FontFile" uid="uid://bv8aqjrr7eytv" path="res://Assets/Fonts/Sddystopiandemo-GO7xa.otf" id="2_uimj6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uimj6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2s0o5")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -297.0
+offset_right = 283.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -273.0
+offset_right = 538.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_uimj6")
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[color=GOLD]GLITCH HUNTER[/color]
+[/ghost]"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -280.0
+offset_right = 291.0
+offset_bottom = -46.0
+grow_vertical = 0
+color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
