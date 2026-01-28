@@ -12,7 +12,8 @@ var current_gui : Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.game_manager = self
-	current_world_3d = $World_3d/Level_One
+	#current_world_3d = $World_3d/Level_One
+	current_world_3d = $World_3d/Level_Dev
 	current_gui = $Gui/MainMenu
 
 func change_3d_scene(next_scene : String, delete : bool = true, keep_running : bool = false) -> void:

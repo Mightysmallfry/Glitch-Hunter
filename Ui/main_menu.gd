@@ -1,7 +1,6 @@
 extends Control
 
 var PauseMenuPath : String = "res://Ui/pause_menu.tscn"
-var StartingLevel : String = "res://Levels/level_one.tscn"
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -9,7 +8,6 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.game_manager.change_gui_scene(PauseMenuPath, true, false)
-	Global.game_manager.change_3d_scene(StartingLevel)
 	
 	self.queue_free()
 

@@ -1,15 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dscwjr4oom24u"]
+[gd_scene load_steps=5 format=3 uid="uid://dscwjr4oom24u"]
 
-[ext_resource type="Script" uid="uid://rrpy18i8t27o" path="res://game_manager.gd" id="1_2dftf"]
-[ext_resource type="PackedScene" uid="uid://7doi4ol7vpln" path="res://Levels/level_one.tscn" id="1_c6gwx"]
+[ext_resource type="Script" uid="uid://rrpy18i8t27o" path="res://Scripts/game_manager.gd" id="1_2dftf"]
 [ext_resource type="PackedScene" uid="uid://d05j5ohditf8a" path="res://Ui/MainMenu.tscn" id="3_bcbcq"]
+[ext_resource type="PackedScene" uid="uid://dqogpg5n8qiyx" path="res://Levels/level_dev.tscn" id="3_eu7l1"]
+[ext_resource type="Script" uid="uid://dcykpwoogbpvk" path="res://Scripts/debug_menu.gd" id="4_js7pq"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_2dftf")
 
 [node name="World_3d" type="Node3D" parent="."]
 
-[node name="Level_One" parent="World_3d" instance=ExtResource("1_c6gwx")]
+[node name="Level_Dev" parent="World_3d" instance=ExtResource("3_eu7l1")]
 
 [node name="World_2d" type="Node2D" parent="."]
 
@@ -25,3 +26,20 @@ mouse_filter = 1
 [node name="MainMenu" parent="Gui" instance=ExtResource("3_bcbcq")]
 layout_mode = 1
 mouse_filter = 1
+
+[node name="PlayerDebugMenu" type="PanelContainer" parent="Gui"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+script = ExtResource("4_js7pq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Gui/PlayerDebugMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DebugProperties" type="VBoxContainer" parent="Gui/PlayerDebugMenu/MarginContainer"]
+layout_mode = 2
