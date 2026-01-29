@@ -2,13 +2,15 @@ extends Node
 class_name State
 
 signal ChangeStateTo(nextStateName : StringName)
-@export var character : CharacterBody3D
+
+@export var CHARACTER : PlayerController
+@export var ANIMATIONS : AnimationPlayer
 
 func enter() -> void:
 	pass
 	
 func exit() -> void:
-	pass
+	ANIMATIONS.speed_scale = 1.0
 	
 func update(delta: float) -> void:
 	pass
