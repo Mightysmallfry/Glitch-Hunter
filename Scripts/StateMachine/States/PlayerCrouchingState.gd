@@ -7,13 +7,24 @@ class_name PlayerCrouchingState
 @export var CROUCH_SPEED : float = 4.0
 
 @onready var CROUCH_SHAPECAST : ShapeCast3D = %ShapeCast3D
+var RELEASED : bool = false
 
-func enter() -> void:
-	ANIMATIONS.play("crouch", -1, CROUCH_SPEED)
+func enter(previousState : State) -> void:
+	ANIMATIONS.speed_scale = 1.0
+	if (previousState.name != "PlayerSlidingState"):
+		ANIMATIONS.play("crouch", -1, CROUCH_SPEED)
+	elif previousState.name == "PlayerSlidingState":
+		ANIMATIONS.current_animation = "crouch"
+		ANIMATIONS.seek(1.0, true)
 	
+func exit() -> void:
+	RELEASED = false
 	
 func update(delta : float) -> void:
 	if Input.is_action_just_released("crouch"):
+		uncrouch()
+	elif Input.is_action_pressed("crouch") == false && RELEASED == false:
+		RELEASED = true
 		uncrouch()
 	
 func physics_update(delta : float) -> void:

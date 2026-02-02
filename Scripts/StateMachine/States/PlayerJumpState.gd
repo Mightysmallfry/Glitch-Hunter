@@ -8,7 +8,7 @@ class_name PlayerJumpState
 @export var JUMP_VELOCITY : float = 5.5
 @export_range(0.5, 1.0, 0.01) var INPUT_MULTIPLIER : float = 0.85
 
-func enter() -> void:
+func enter(previousState : State) -> void:
 	CHARACTER.velocity.y += JUMP_VELOCITY
 	ANIMATIONS.pause()
 	

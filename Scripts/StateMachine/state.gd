@@ -6,7 +6,7 @@ signal ChangeStateTo(nextStateName : StringName)
 @export var CHARACTER : PlayerController
 @export var ANIMATIONS : AnimationPlayer
 
-func enter() -> void:
+func enter(previousState : State) -> void:
 	pass
 	
 func exit() -> void:

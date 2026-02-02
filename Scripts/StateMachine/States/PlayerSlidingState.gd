@@ -9,16 +9,14 @@ class_name PlayerSlidingState
 
 @onready var CROUCH_SHAPECAST : ShapeCast3D = %ShapeCast3D
 
-func enter() -> void:
-	set_tilt(CHARACTER.camera.rotation.y)
+func enter(previousState : State) -> void:
+	set_tilt(CHARACTER.currentRotation)
 	ANIMATIONS.get_animation("sliding").track_set_key_value(4, 0, CHARACTER.velocity.length())
 	ANIMATIONS.speed_scale = 1.0
 	ANIMATIONS.play("sliding", -1.0, SLIDE_ANIMATION_SPEED)
-	
 
 func update(delta : float) -> void:
 	pass
-		
 		
 func physics_update(delta : float) -> void:
 	CHARACTER.update_gravity(delta)
@@ -32,6 +30,7 @@ func set_tilt(rotation : float) -> void:
 		tilt.z = 0.05
 	ANIMATIONS.get_animation("sliding").track_set_key_value(7, 1, tilt)
 	ANIMATIONS.get_animation("sliding").track_set_key_value(7, 2, tilt)
+	
 	
 func finish() -> void:
 	ChangeStateTo.emit("PlayerCrouchingState")

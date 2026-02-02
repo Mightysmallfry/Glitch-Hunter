@@ -9,14 +9,13 @@ class_name PlayerFallingState
 # false/true is enabled/disabled
 var DOUBLE_JUMP : bool = false
 
-func enter() -> void:
+func enter(previousState : State) -> void:
 	ANIMATIONS.pause()
 
 func exit() -> void:
 	DOUBLE_JUMP = false
 	
 func update(delta : float) -> void:
-	
 	if Input.is_action_just_pressed("jump") && !DOUBLE_JUMP:
 		DOUBLE_JUMP = !DOUBLE_JUMP
 		CHARACTER.velocity.y = DOUBLE_JUMP_VELOCITY

@@ -13,7 +13,7 @@ func _ready() -> void:
 		else:
 			push_warning("StateMachine contains invalid child node")
 			
-	CurrentState.enter()
+	CurrentState.enter(null)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,7 +28,7 @@ func _on_Change_State_To(nextStateName : String) -> void:
 	if newState != null:
 		if newState != CurrentState:
 			CurrentState.exit()
+			newState.enter(CurrentState)
 			CurrentState = newState
-			CurrentState.enter()
 	else:
 		push_warning("Chosen state does not exist")

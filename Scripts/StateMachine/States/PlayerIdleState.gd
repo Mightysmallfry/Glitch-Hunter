@@ -5,7 +5,7 @@ class_name PlayerIdleState
 @export var DECELERATION : float = 0.375
 @export var SPEED : float = 1.0
 
-func enter() -> void:
+func enter(previousState : State) -> void:
 	ANIMATIONS.play("idle")
 
 func update(delta : float) -> void:

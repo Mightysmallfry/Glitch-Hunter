@@ -7,7 +7,7 @@ class_name PlayerSprintingState
 @export var DECELERATION : float = 0.375
 @export var SPEED : float = 10.0
 
-func enter() -> void:
+func enter(previousState : State) -> void:
 	ANIMATIONS.play("sprinting", 0.5, 1.0)
 
 
@@ -25,7 +25,7 @@ func update(delta : float) -> void:
 	if CHARACTER.velocity.y < -0.1 && !CHARACTER.is_on_floor():
 		ChangeStateTo.emit("PlayerFallingState")
 	
-	if Input.is_action_just_pressed("crouch") && CHARACTER.velocity.length() > SPEED/2.0:
+	if Input.is_action_just_pressed("crouch") && CHARACTER.velocity.length() > 2.0:
 		ChangeStateTo.emit("PlayerSlidingState")
 		
 func physics_update(delta: float) -> void:
